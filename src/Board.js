@@ -34,10 +34,10 @@ class Board extends React.Component {
     render() {
         const winner = calculateWinner(this.state.squares);
         let status;
-        if (winner === "Tie") {
-          status = 'Cat: ' + winner;
+        if (winner != "Tie" && winner != null) {
+          status = 'Winner: ' + winner;
         }else if(winner){
-            status = 'Winner' + winner;
+            status = 'Cat: ' + winner;
         }
         else{
           status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
@@ -81,12 +81,12 @@ class Board extends React.Component {
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         return squares[a];
 
-      }else if(
-          squares.includes(null) === false &&squares[a] && squares[a] === squares[b] && squares[a] === squares[c] ===false
-      ){
-          return "Tie"
-
       }
+    }if(
+        squares.includes(null) === false
+     ){
+        return "Tie"
+
     }
 
     return null;
